@@ -17,6 +17,8 @@ const gutter = 2;
 
 var Item = require('./Item');
 var NewListing = require('./NewListing');
+var TabBar = require('./TabBar');
+var SearchBar = require('./SearchBar');
 
 var styles = StyleSheet.create({
 
@@ -36,20 +38,19 @@ var styles = StyleSheet.create({
     paddingHorizontal: gutter,   
   },
   sellButton: {
-    paddingTop: 20,
-    paddingBottom: 20,
+    paddingTop: 10,
+    paddingBottom: 10,
     backgroundColor: 'red',
-    borderRadius: 10,
-    borderWidth: 1,
-    borderColor: '#fff',
+    borderRadius: 30,    
     position: 'absolute',
-    bottom: 20, 
-    left: 20,
-    right: 20
+    bottom: 60,
+    left: 70,
+    right: 70
   },
   sellText: {
     color: 'white',
     fontSize: 20,
+    backgroundColor: 'transparent',    
     textAlign: 'center',
     fontWeight: 'bold' 
   }
@@ -89,8 +90,9 @@ class ItemList extends Component {
         <ActivityIndicator size='large' />
       ) : ( <View/> )
 
-    return (      
+    return (
       <View style={{ flex: 1 }}>
+        <SearchBar />
         <ListView contentContainerStyle={styles.list}
                 dataSource={this.state.dataSource}
                 renderRow={
@@ -103,6 +105,7 @@ class ItemList extends Component {
             Make Money
           </Text>
         </TouchableHighlight>
+        <TabBar />
       </View>
     );
   }

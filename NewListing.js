@@ -43,58 +43,98 @@ var styles = StyleSheet.create({
     color: '#656565'
   },
   listButton: {
-    paddingTop: 20,
-    paddingBottom: 20,
-    backgroundColor: 'red',
-    borderRadius: 10,
+    marginTop: 50,
+    paddingTop: 10,
+    paddingBottom: 10,
+    backgroundColor: 'red',    
     borderWidth: 1,
     borderColor: '#fff',
-    position: 'absolute',
-    bottom: 80, 
-    left: 20,
-    right: 20
   },
   listText: {
     color: 'white',
-    fontSize: 20,
+    fontSize: 16,
     textAlign: 'center',
     fontWeight: 'bold' 
+  },
+  steps: {
+    color: '#333',
+    fontSize: 16,
+    fontWeight: 'bold'
+  },
+  stepButton: {
+    backgroundColor: 'white',
+    height: 45,
+    padding: 10,
+    borderRadius: 10,
+    shadowRadius: 5,
+    shadowOpacity: 0.3,    
+    shadowOffset: {
+      width: 0,
+      height: 1
+    },
+    shadowColor: '#777',
+    marginTop: 10,
+    marginBottom: 20
+  },
+  stepButtonText: {
+    textAlign: 'center',
+    fontSize: 18
   }
 });
 
 class NewListing extends Component {
   render() {
     return (
-      <ScrollView contentContainerStyle={{flex:1}}>
-        <View>
+      <ScrollView style={{backgroundColor: '#f0f0f0'}} contentContainerStyle={{flex:1}}>
+        <View style={{margin: 20}}>
           <View style={styles.section}>            
-            <Text style={styles.steps}>Step 1</Text>
-            <View style={styles.separator}/>
+            <Text style={styles.steps}>STEP 1</Text>
+            
+            <TouchableHighlight style={styles.stepButton}>
+              <Text style={styles.stepButtonText}>
+                Add item photos
+              </Text>
+            </TouchableHighlight>
           </View>
 
           <View style={styles.section}>            
-            <Text style={styles.steps}>Step 2</Text>
-            <View style={styles.separator}/>
+            <Text style={styles.steps}>STEP 2</Text>
+            
+            <TouchableHighlight style={styles.stepButton}>
+              <Text style={styles.stepButtonText}>
+                Add some details
+              </Text>
+            </TouchableHighlight>
           </View>
 
           <View style={styles.section}>            
-            <Text style={styles.steps}>Step 3</Text>
-            <Text>Shipping</Text>
-            <View style={styles.separator}/>
+            <Text style={styles.steps}>STEP 3</Text>
+            
+            <TouchableHighlight style={styles.stepButton}>
+              <Text style={styles.stepButtonText}>
+                Add shipping details
+              </Text>
+            </TouchableHighlight>
+            
           </View> 
 
           <View style={styles.section}>            
-            <Text style={styles.steps}>Step 4</Text>
-            <Text>Select Location</Text>
-            <View style={styles.separator}/>
+            <Text style={styles.steps}>STEP 4</Text>
+            
+            <TouchableHighlight style={styles.stepButton}>
+              <Text style={styles.stepButtonText}>
+                Select Location
+              </Text>
+            </TouchableHighlight>
+            
           </View>       
-        </View>
-        <TouchableHighlight style={styles.listButton}
-                              onPress={() => this.rowPressed()} >
+          <TouchableHighlight style={styles.listButton}
+                            onPress={() => this.rowPressed()} >
             <Text style={styles.listText}>
               List
             </Text>
           </TouchableHighlight>
+        </View>        
       </ScrollView>
     )
   }

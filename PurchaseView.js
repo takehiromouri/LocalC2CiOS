@@ -15,8 +15,8 @@ const { width, height } = Dimensions.get('window');
 
 var styles = StyleSheet.create({
   heading: {
-    backgroundColor: '#F8F8F8',
-    flexDirection: 'row'
+    flexDirection: 'row',
+    padding: 10, 
   },
   separator: {
     height: 1,
@@ -27,26 +27,24 @@ var styles = StyleSheet.create({
     height: 80
   },
   price: {
-    fontSize: 25,
-    fontWeight: 'bold',
-    margin: 5,
-    color: '#48BBEC'
+    fontSize: 12,   
+    margin: 10, 
+    color: '#333',
   },
   title: {
-    fontSize: 20,
-    margin: 5,
-    color: '#656565'
+    fontSize: 16,
+    marginLeft: 10,
+    color: '#333'
   },
   description: {
     fontSize: 18,
-    margin: 5,
+    marginLeft: 5,
     color: '#656565'
   },
   checkoutButton: {
-    paddingTop: 20,
-    paddingBottom: 20,
-    backgroundColor: 'red',
-    borderRadius: 10,
+    paddingTop: 10,
+    paddingBottom: 10,
+    backgroundColor: 'red',    
     borderWidth: 1,
     borderColor: '#fff',
     position: 'absolute',
@@ -56,9 +54,13 @@ var styles = StyleSheet.create({
   },
   checkoutText: {
     color: 'white',
-    fontSize: 20,
+    fontSize: 16,
     textAlign: 'center',
     fontWeight: 'bold' 
+  },
+  section: {
+    flexDirection: 'row',
+    padding: 15,
   }
 });
 
@@ -70,14 +72,27 @@ class PurchaseView extends Component {
           <View style={styles.heading}>
             <Image style={styles.image}
               source={{uri: 'https://placeholdit.imgix.net/~text?txtsize=14&txt=150%C3%97150&w=150&h=150'}} />
-            <Text style={styles.price}>$45</Text>
-            <Text style={styles.title}>iPhone 4s</Text>
-            <View style={styles.separator}/>
+            <View style={{flexDirection: 'column'}}>
+              <Text style={styles.title}>iPhone 4s</Text>  
+              <Text style={styles.price}>$45</Text>        
+            </View>                
           </View>
-          <Text style={styles.subPrice}>Shipping Fee</Text>
-          <Text style={styles.subPrice}>Mercari credits</Text>
+
           <View style={styles.separator}/>
-          <Text style={styles.subPrice}>You Pay</Text>          
+
+          <View style={styles.section}>
+            <Text style={styles.subPrice}>Shipping Fee</Text>
+            <Text>$3</Text>
+          </View>
+
+          <View style={styles.separator}/>
+
+          <View style={styles.section}>
+            <Text style={{fontWeight: 'bold'}}>You Pay</Text>          
+          </View>
+
+          <View style={styles.separator}/>
+          
         </View>
         <TouchableHighlight style={styles.checkoutButton}
                               onPress={() => this.rowPressed()} >
