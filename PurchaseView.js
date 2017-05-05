@@ -61,10 +61,41 @@ var styles = StyleSheet.create({
   section: {
     flexDirection: 'row',
     padding: 15,
-  }
+  },
+  stepButton: {
+    backgroundColor: '#eee',
+    height: 45,
+    padding: 10,
+    borderWidth: 1,
+    borderColor: '#eee',
+    shadowRadius: 5,
+    shadowOpacity: 0.1,    
+    shadowOffset: {
+      width: 0,
+      height: 1
+    },
+    shadowColor: '#777',
+    marginTop: 10,
+    marginBottom: 20,
+    marginRight: 20,
+    marginLeft: 20
+  },
+  stepButtonText: {
+    color: '#555',
+    textAlign: 'center',
+    fontSize: 16,
+    fontWeight: 'bold'
+  },
 });
 
 class PurchaseView extends Component {
+  confirmLocation(){
+    this.props.navigator.push({
+      title: 'Confirm Location',
+      component: ConfirmLocationView
+    })
+  }
+
   render() {
     return (
       <ScrollView contentContainerStyle={{flex:1}}>
@@ -92,10 +123,17 @@ class PurchaseView extends Component {
           </View>
 
           <View style={styles.separator}/>
+
+          <TouchableHighlight style={styles.stepButton}
+                              onPress={() => this.confirmLocation()}>
+            <Text style={styles.stepButtonText}>
+              Confirm location and time
+            </Text>
+          </TouchableHighlight>
           
         </View>
         <TouchableHighlight style={styles.checkoutButton}
-                              onPress={() => this.rowPressed()} >
+                            onPress={() => this.rowPressed()} >
             <Text style={styles.checkoutText}>
               Checkout
             </Text>

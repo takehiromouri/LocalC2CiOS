@@ -45,7 +45,7 @@ var styles = StyleSheet.create({
     marginLeft: 20,
     marginTop: 10,
     paddingLeft: 20,    
-    height: 40,  
+    height: 35,  
     top: 0
   }
 })

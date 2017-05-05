@@ -9,6 +9,7 @@ import {
   TouchableHighlight,
   Text
 } from 'react-native';
+import Camera from 'react-native-camera';
 
 import { Dimensions } from 'react-native'; 
 const { width, height } = Dimensions.get('window');
@@ -79,22 +80,47 @@ var styles = StyleSheet.create({
   stepButtonText: {
     textAlign: 'center',
     fontSize: 18
+  },
+  preview: {    
+    justifyContent: 'flex-end',
+    alignItems: 'center'
+  },
+  capture: {
+    flex: 0,
+    backgroundColor: '#fff',
+    borderRadius: 5,
+    color: '#000',
+    padding: 10,
+    margin: 40
   }
 });
 
 class NewListing extends Component {
+  takePicture() {    
+    const options = {};
+    //options.location = ...
+    this.camera.capture({metadata: options})
+      .then((data) => console.log(data))
+      .catch(err => console.error(err));
+  }
+
   render() {
+    console.log("hi")
     return (
       <ScrollView style={{backgroundColor: '#f0f0f0'}} contentContainerStyle={{flex:1}}>
         <View style={{margin: 20}}>
           <View style={styles.section}>            
             <Text style={styles.steps}>STEP 1</Text>
             
-            <TouchableHighlight style={styles.stepButton}>
-              <Text style={styles.stepButtonText}>
-                Add item photos
-              </Text>
-            </TouchableHighlight>
+            <View style={styles.stepButton}>
+              <Camera ref={(cam) => {
+                this.camera = cam;
+              }}>
+                <Text style={styles.stepButtonText} onPress={this.takePicture.bind(this)}>Add item photos</Text>
+              </Camera>
+            </View>
+
+            
           </View>
 
           <View style={styles.section}>            

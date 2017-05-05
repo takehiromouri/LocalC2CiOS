@@ -25,8 +25,8 @@ var styles = StyleSheet.create({
     backgroundColor: '#DDDDDD'
   },
   image: {
-    width: 400,
-    height: 300
+    width: width,
+    height: 250
   },
   userView: {
     flexDirection: 'row',
@@ -56,7 +56,7 @@ var styles = StyleSheet.create({
     color: '#656565',    
   },
   description: {
-    fontSize: 18,
+    fontSize: 14,
     margin: 5,
     color: '#656565'
   },
