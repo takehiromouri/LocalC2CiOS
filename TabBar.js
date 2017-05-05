@@ -35,7 +35,7 @@ class TabBar extends React.Component {
     return (
       <TabBarIOS
         unselectedTintColor="gray"
-        tintColor="red"
+        tintColor="#dc4e41"
         unselectedItemTintColor="gray"
         barTintColor="white">
         <TabBarIOS.Item

@@ -44,7 +44,7 @@ var styles = StyleSheet.create({
   checkoutButton: {
     paddingTop: 10,
     paddingBottom: 10,
-    backgroundColor: 'red',    
+    backgroundColor: '#dc4e41',    
     borderWidth: 1,
     borderColor: '#fff',
     position: 'absolute',

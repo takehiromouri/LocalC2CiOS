@@ -40,7 +40,7 @@ var styles = StyleSheet.create({
   sellButton: {
     paddingTop: 10,
     paddingBottom: 10,
-    backgroundColor: 'red',
+    backgroundColor: '#dc4e41',
     borderRadius: 30,    
     position: 'absolute',
     bottom: 60,

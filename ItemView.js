@@ -76,7 +76,7 @@ var styles = StyleSheet.create({
   buyButton: {
     paddingTop: 10,
     paddingBottom: 10,
-    backgroundColor: 'red',
+    backgroundColor: '#dc4e41',
     borderRadius: 30,    
     position: 'absolute',
     bottom: 20,
@@ -232,6 +232,8 @@ class ItemView extends Component {
               proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
             </Text>           
           </View>
+
+          <View style={{marginBottom: 80}} />
 
 
         </ScrollView>
