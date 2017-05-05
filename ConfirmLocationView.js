@@ -14,6 +14,7 @@ import {
 
 
 var SelectLocationView = require('./SelectLocationView')
+var PurchaseView = require('./PurchaseView')
 
 import { Dimensions } from 'react-native'; 
 const { width, height } = Dimensions.get('window');
@@ -33,6 +34,23 @@ const styles = StyleSheet.create({
     bottom: 5,
     left: 20
   },
+  checkoutButton: {
+    paddingTop: 10,
+    paddingBottom: 10,
+    backgroundColor: '#dc4e41',    
+    borderWidth: 1,
+    borderColor: '#fff',
+    position: 'absolute',
+    bottom: 20, 
+    left: 20,
+    right: 20
+  },
+  checkoutText: {
+    color: 'white',
+    fontSize: 16,
+    textAlign: 'center',
+    fontWeight: 'bold' 
+  },
 });
 
 class ConfirmLocationView extends Component {  
@@ -46,6 +64,10 @@ class ConfirmLocationView extends Component {
   onDateChange = (date) => {
     this.setState({date: date});
   };
+
+  rowPressed(){
+    this.props.navigator.pop()
+  }
 
   render() {
     return (
@@ -62,6 +84,13 @@ class ConfirmLocationView extends Component {
           mode="datetime"
           onDateChange={this.onDateChange}
         />
+
+        <TouchableHighlight style={styles.checkoutButton}
+                            onPress={() => this.rowPressed()} >
+          <Text style={styles.checkoutText}>
+            Confirm
+          </Text>
+        </TouchableHighlight>
       </View>
     )
   }

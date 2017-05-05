@@ -92,7 +92,7 @@ var styles = StyleSheet.create({
 class PurchaseView extends Component {
   confirmLocation(){
     this.props.navigator.push({
-      title: 'Confirm Location',
+      title: 'Confirm Location and Time',
       component: ConfirmLocationView
     })
   }
@@ -135,10 +135,10 @@ class PurchaseView extends Component {
         </View>
         <TouchableHighlight style={styles.checkoutButton}
                             onPress={() => this.rowPressed()} >
-            <Text style={styles.checkoutText}>
-              Checkout
-            </Text>
-          </TouchableHighlight>
+          <Text style={styles.checkoutText}>
+            Checkout
+          </Text>
+        </TouchableHighlight>
       </ScrollView>
     )
   }
