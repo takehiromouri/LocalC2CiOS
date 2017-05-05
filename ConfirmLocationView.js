@@ -7,8 +7,11 @@ import {
   View,
   ScrollView,
   TouchableHighlight,
-  Text
+  TouchableOpacity,
+  Text,
+  DatePickerIOS,
 } from 'react-native';
+
 
 var SelectLocationView = require('./SelectLocationView')
 
@@ -36,14 +39,13 @@ class ConfirmLocationView extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      region: {
-        latitude: 37.78825,
-        longitude: -122.4324,
-        latitudeDelta: 0.0922,
-        longitudeDelta: 0.0421,
-      },
+      date: new Date(),      
     };
   }
+
+  onDateChange = (date) => {
+    this.setState({date: date});
+  };
 
   render() {
     return (
@@ -51,9 +53,15 @@ class ConfirmLocationView extends Component {
         <SelectLocationView />
         <View style={styles.sectionHeader}>
           <Text style={styles.sectionHeaderText}>
-            SELECT TIME
+            SELECT DATE AND TIME
           </Text>
-        </View>        
+        </View>
+        <DatePickerIOS
+          style={{height: 100}}
+          date={this.state.date}
+          mode="datetime"
+          onDateChange={this.onDateChange}
+        />
       </View>
     )
   }

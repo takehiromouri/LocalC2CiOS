@@ -13,7 +13,7 @@ import MapView from 'react-native-maps';
 
 const styles = StyleSheet.create({
   container: {
-    height: 400    
+    height: 300    
   },
   map: {
     position: 'absolute',
