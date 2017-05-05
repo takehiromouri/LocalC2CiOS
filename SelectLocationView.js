@@ -3,14 +3,9 @@
 import React, { Component } from 'react'
 import {
   StyleSheet,
-  Image,
   View,
   ScrollView,
-  TouchableHighlight,
-  Text
 } from 'react-native';
-
-var SelectLocationView = require('./SelectLocationView')
 
 import { Dimensions } from 'react-native'; 
 const { width, height } = Dimensions.get('window');
@@ -18,21 +13,18 @@ import MapView from 'react-native-maps';
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1
+    height: 400    
   },
-  sectionHeader: {
-    backgroundColor: '#f9f9f9',
-    height: 50,    
-  },
-  sectionHeaderText: {
-    color: '#777',
+  map: {
     position: 'absolute',
-    bottom: 5,
-    left: 20
-  },
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+  }
 });
 
-class ConfirmLocationView extends Component {  
+class SelectLocationView extends Component {  
   constructor(props) {
     super(props);
     this.state = {
@@ -48,15 +40,23 @@ class ConfirmLocationView extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <SelectLocationView />
-        <View style={styles.sectionHeader}>
-          <Text style={styles.sectionHeaderText}>
-            SELECT TIME
-          </Text>
-        </View>        
+        <MapView
+          style={styles.map}
+          initialRegion={{
+            latitude: 37.78825,
+            longitude: -122.4324,
+            latitudeDelta: 0.0922,
+            longitudeDelta: 0.0421,
+          }}
+        >
+          <MapView.Marker draggable
+            coordinate={this.state.region}
+            onDragEnd={(e) => this.setState({ region: e.nativeEvent.coordinate })}
+          /> 
+        </MapView>      
       </View>
     )
   }
 }
 
-module.exports = ConfirmLocationView;
+module.exports = SelectLocationView;

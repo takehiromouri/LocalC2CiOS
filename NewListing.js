@@ -105,7 +105,6 @@ class NewListing extends Component {
   }
 
   render() {
-    console.log("hi")
     return (
       <ScrollView style={{backgroundColor: '#f0f0f0'}} contentContainerStyle={{flex:1}}>
         <View style={{margin: 20}}>

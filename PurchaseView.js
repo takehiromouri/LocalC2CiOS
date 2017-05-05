@@ -12,6 +12,7 @@ import {
 
 import { Dimensions } from 'react-native'; 
 const { width, height } = Dimensions.get('window');
+var ConfirmLocationView = require('./ConfirmLocationView');
 
 var styles = StyleSheet.create({
   heading: {
