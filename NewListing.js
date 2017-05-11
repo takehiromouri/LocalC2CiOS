@@ -7,7 +7,8 @@ import {
   View,
   ScrollView,
   TouchableHighlight,
-  Text
+  Text,
+  Alert
 } from 'react-native';
 import Camera from 'react-native-camera';
 
@@ -102,6 +103,17 @@ class NewListing extends Component {
     this.camera.capture({metadata: options})
       .then((data) => console.log(data))
       .catch(err => console.error(err));
+  }
+
+  rowPressed() {
+    Alert.alert(
+      'Creating new listing',
+      'You are about to create a new listing. Are you sure?',
+      [        
+        {text: 'Cancel', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},        
+        {text: 'Yes', onPress: () => this.props.navigator.pop()},
+      ],     
+    )        
   }
 
   render() {
