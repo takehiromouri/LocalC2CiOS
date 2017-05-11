@@ -13,7 +13,7 @@ import MapView from 'react-native-maps';
 
 const styles = StyleSheet.create({
   container: {
-    height: 300    
+    height: 200    
   },
   map: {
     position: 'absolute',
@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
   }
 });
 
-class SelectLocationView extends Component {  
+class TransactionMapView extends Component {  
 
   onCoordinateChange = (coordinate) => {    
     this.props.onCoordinateChange(coordinate);
@@ -42,11 +42,8 @@ class SelectLocationView extends Component {
             longitudeDelta: 0.0421,
           }}
         >
-          <MapView.Marker draggable
-            coordinate={this.props.coordinate}
-            onDragEnd={
-              (e) => this.onCoordinateChange(e.nativeEvent.coordinate)
-            }
+          <MapView.Marker
+            coordinate={this.props.coordinate}            
           /> 
         </MapView>      
       </View>
@@ -54,4 +51,4 @@ class SelectLocationView extends Component {
   }
 }
 
-module.exports = SelectLocationView;
+module.exports = TransactionMapView;

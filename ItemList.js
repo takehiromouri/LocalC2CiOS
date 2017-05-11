@@ -81,7 +81,7 @@ class ItemList extends Component {
   rowPressed() {
     this.props.navigator.push({
       title: 'Create New Listing',
-      component: NewListing
+      component: NewListing,      
     })
   }
 
@@ -105,7 +105,7 @@ class ItemList extends Component {
             Make Money
           </Text>
         </TouchableHighlight>
-        <TabBar />
+        <TabBar navigator={this.props.navigator} />
       </View>
     );
   }

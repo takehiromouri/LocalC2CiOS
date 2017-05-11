@@ -13,6 +13,7 @@ import {
 import { Dimensions } from 'react-native'; 
 const { width, height } = Dimensions.get('window');
 var ConfirmLocationView = require('./ConfirmLocationView');
+var ThankYouView = require('./ThankYouView');
 
 var styles = StyleSheet.create({
   heading: {
@@ -90,10 +91,44 @@ var styles = StyleSheet.create({
 });
 
 class PurchaseView extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {      
+      coordinate: {
+        latitude: 37.78825,
+        longitude: -122.4324,
+        latitudeDelta: 0.0922,
+        longitudeDelta: 0.0421,
+      },
+      date: new Date(),
+    }
+  }
+
   confirmLocation(){
     this.props.navigator.push({
       title: 'Confirm Location and Time',
-      component: ConfirmLocationView
+      component: ConfirmLocationView,
+      passProps: { 
+        onDateChange: this.onDateChange,
+        onCoordinateChange: this.onCoordinateChange,
+        coordinate: this.state.coordinate,
+        date: this.state.date
+      }
+    })
+  }
+
+  onCoordinateChange = (coordinate) => {
+    this.setState({ coordinate: coordinate })
+  }
+
+  onDateChange = (date) => {
+    this.setState({ date: date })
+  }
+
+  rowPressed() {
+    this.props.navigator.push({
+      title: 'Thank You',
+      component: ThankYouView
     })
   }
 
@@ -114,7 +149,7 @@ class PurchaseView extends Component {
 
           <View style={styles.section}>
             <Text style={styles.subPrice}>Shipping Fee</Text>
-            <Text>$3</Text>
+            <Text></Text>
           </View>
 
           <View style={styles.separator}/>
@@ -129,7 +164,7 @@ class PurchaseView extends Component {
                               onPress={() => this.confirmLocation()}>
             <Text style={styles.stepButtonText}>
               Confirm location and time
-            </Text>
+            </Text>            
           </TouchableHighlight>
           
         </View>

@@ -10,6 +10,7 @@ import {
   TouchableOpacity,
   Text,
   DatePickerIOS,
+  Alert
 } from 'react-native';
 
 
@@ -41,7 +42,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: '#fff',
     position: 'absolute',
-    bottom: 20, 
+    bottom: 70, 
     left: 20,
     right: 20
   },
@@ -49,11 +50,28 @@ const styles = StyleSheet.create({
     color: 'white',
     fontSize: 16,
     textAlign: 'center',
+    fontWeight: 'bold'
+  },
+  cancelButton: {
+    paddingTop: 10,
+    paddingBottom: 10,
+    backgroundColor: '#bbb',    
+    borderWidth: 1,
+    borderColor: '#fff',
+    position: 'absolute',
+    bottom: 20, 
+    left: 20,
+    right: 20
+  },
+  cancelText: {
+    color: 'white',
+    fontSize: 16,
+    textAlign: 'center',
     fontWeight: 'bold' 
   },
 });
 
-class ConfirmLocationView extends Component {  
+class ConfirmDetailsView extends Component {  
   onDateChange = (date) => {    
     this.props.onDateChange(date);
   }
@@ -62,8 +80,16 @@ class ConfirmLocationView extends Component {
     this.props.onCoordinateChange(coordinate)
   }
 
+
   rowPressed(){
-    this.props.navigator.pop()
+    Alert.alert(
+      'Request Changes',
+      'Are you sure you want to request these changes?',
+      [        
+        {text: 'Cancel', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},        
+        {text: 'Yes', onPress: () => this.props.navigator.pop()},
+      ],     
+    )    
   }
 
   render() {
@@ -72,7 +98,7 @@ class ConfirmLocationView extends Component {
         <SelectLocationView onCoordinateChange={this.onCoordinateChange} coordinate={this.props.coordinate} />
         <View style={styles.sectionHeader}>
           <Text style={styles.sectionHeaderText}>
-            SELECT DATE AND TIME
+            CONFIRM DATE AND TIME
           </Text>
         </View>
         <DatePickerIOS
@@ -88,9 +114,16 @@ class ConfirmLocationView extends Component {
             Confirm
           </Text>
         </TouchableHighlight>
+
+        <TouchableHighlight style={styles.cancelButton}
+                            onPress={() => this.props.navigator.pop()} >
+          <Text style={styles.cancelText}>
+            Cancel
+          </Text>
+        </TouchableHighlight>
       </View>
     )
   }
 }
 
-module.exports = ConfirmLocationView;
+module.exports = ConfirmDetailsView;
