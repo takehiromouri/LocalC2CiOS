@@ -4,6 +4,7 @@ import React, { Component } from 'react'
 import {
   StyleSheet,
   View,
+  Text,
   ScrollView,
 } from 'react-native';
 
@@ -25,6 +26,53 @@ const styles = StyleSheet.create({
 });
 
 class SelectLocationView extends Component {  
+  constructor(props) {
+    super(props);
+    this.state = {
+      markers: [
+        {
+          coordinate: {
+            latitude: 37.78825,
+            longitude: -122.4154,
+            latitudeDelta: 0.0922,
+            longitudeDelta: 0.0421,
+          },
+          title: 'Target',
+          description: '6 people have met here.'
+        },
+        {
+          coordinate: {
+            latitude: 37.78855,
+            longitude: -122.4354,
+            latitudeDelta: 0.0922,
+            longitudeDelta: 0.0421,
+          },
+          title: 'Walmart',
+          description: '8 people have met here.'
+        },
+        {
+          coordinate: {
+            latitude: 37.78425,
+            longitude: -122.4324,
+            latitudeDelta: 0.0922,
+            longitudeDelta: 0.0421,
+          },
+          title: 'ShopMart',
+          description: '11 people have met here.'
+        },
+        {
+          coordinate: {
+            latitude: 37.78495,
+            longitude: -122.4394,
+            latitudeDelta: 0.0922,
+            longitudeDelta: 0.0421,
+          },
+          title: 'Taco Bell',
+          description: '7 people have met here.'
+        }
+      ]
+    }
+  }
 
   onCoordinateChange = (coordinate) => {    
     this.props.onCoordinateChange(coordinate);
@@ -38,16 +86,24 @@ class SelectLocationView extends Component {
           initialRegion={{
             latitude: 37.78825,
             longitude: -122.4324,
-            latitudeDelta: 0.0922,
+            latitudeDelta: 0.022,
             longitudeDelta: 0.0421,
           }}
         >
+          {this.state.markers.map(marker => (
+            <MapView.Marker
+              key={marker.title}
+              coordinate={marker.coordinate}
+              title={marker.title}
+              description={marker.description}
+            />
+          ))}
           <MapView.Marker draggable
             coordinate={this.props.coordinate}
             onDragEnd={
               (e) => this.onCoordinateChange(e.nativeEvent.coordinate)
             }
-          /> 
+          />          
         </MapView>      
       </View>
     )
